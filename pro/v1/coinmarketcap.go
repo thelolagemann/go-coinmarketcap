@@ -76,7 +76,13 @@ type MapListing struct {
 	IsActive            int     `json:"is_active"`
 	FirstHistoricalData string  `json:"first_historical_data"`
 	LastHistoricalData  string  `json:"last_historical_data"`
-	Platform            *string
+	Platform            struct {
+		ID           int    `json:"id"`
+		Name         string `json:"name"`
+		Symbol       string `json:"symbol"`
+		Slug         string `json:"slug"`
+		TokenAddress string `json:"token_address"`
+	}
 }
 
 // ConvertListing is the converted listing structure

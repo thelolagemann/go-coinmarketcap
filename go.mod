@@ -1,4 +1,4 @@
-module github.com/miguelmota/go-coinmarketcap
+module github.com/thelolagemann/go-coinmarketcap
 
 go 1.15
 
