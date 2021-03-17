@@ -9,6 +9,10 @@ import (
 	"time"
 )
 
+var (
+	HTTPClient *http.Client = &http.Client{}
+)
+
 // toInt helper for parsing strings to int
 func toInt(rawInt string) int {
 	parsed, _ := strconv.Atoi(strings.Replace(strings.Replace(rawInt, "$", "", -1), ",", "", -1))
@@ -24,10 +28,8 @@ func toFloat(rawFloat string) float64 {
 // doReq HTTP client
 func doReq(req *http.Request) ([]byte, error) {
 	requestTimeout := time.Duration(5 * time.Second)
-	client := &http.Client{
-		Timeout: requestTimeout,
-	}
-	resp, err := client.Do(req)
+	HTTPClient.Timeout = requestTimeout
+	resp, err := HTTPClient.Do(req)
 	if err != nil {
 		return nil, err
 	}

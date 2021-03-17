@@ -11,6 +11,10 @@ import (
 	"github.com/miguelmota/go-coinmarketcap/v1/types"
 )
 
+var (
+	HTTPClient *http.Client = &http.Client{}
+)
+
 // Tickers get information about all coins listed in Coin Market Cap
 func Tickers(limit int, convert string) (map[string]*types.Ticker, error) {
 	var params []string
@@ -66,8 +70,7 @@ func Tickers(limit int, convert string) (map[string]*types.Ticker, error) {
 
 // doReq HTTP client
 func doReq(req *http.Request) ([]byte, error) {
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	resp, err := HTTPClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
